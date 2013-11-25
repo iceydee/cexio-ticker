@@ -27,7 +27,7 @@ class cexio-ticker(sublime_plugin.EventListener):
       Returns a the current exchange rate of 1 GHS in XBT.
     """
 
-    settings = sublime.load_settings('cexio-tiker.sublime-settings')
+    settings = sublime.load_settings('cexio-ticker.sublime-settings')
 
     url = 'https://cex.io/api/ticker/GHS/BTC'
     req = urlparse(url)
@@ -36,7 +36,6 @@ class cexio-ticker(sublime_plugin.EventListener):
     ghs_in_btc = float(resp['last'])
 
     return ghs_in_btc
-
 
   def on_load(self, view):
     self.view = view
