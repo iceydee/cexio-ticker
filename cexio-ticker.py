@@ -2,6 +2,7 @@ import sublime
 import sublime_plugin
 
 try:
+  import urllib
   from urllib.request import urlopen
   from urllib.parse import urlparse
 except ImportError:
@@ -11,7 +12,7 @@ except ImportError:
 import json
 import re
 
-class cexio-ticker(sublime_plugin.EventListener):
+class cexioticker(sublime_plugin.EventListener):
 
   def update_status(self):
     """
@@ -30,8 +31,8 @@ class cexio-ticker(sublime_plugin.EventListener):
     settings = sublime.load_settings('cexio-ticker.sublime-settings')
 
     url = 'https://cex.io/api/ticker/GHS/BTC'
-    req = urlparse(url)
-    resp = json.loads(urlopen(req.geturl()).read().decode('utf-8'))
+    req = urllib.request.Request(url, headers={'User-Agent': 'sublime-text-ticker'})
+    resp = json.loads(urlopen(req).read().decode('utf-8'))
 
     ghs_in_btc = float(resp['last'])
 
