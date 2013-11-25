@@ -19,7 +19,7 @@ class cexioticker(sublime_plugin.EventListener):
       Updates the view's status bar with the current exchange rate
     """
 
-    self.view.set_status('ghs', "GHS/BTC %.2f" % self.get_ticker())
+    self.view.set_status('ghs', "GHS/BTC %.6f" % self.get_ticker())
 
   def get_ticker(self):
     """
